@@ -17,7 +17,6 @@ router.post('/', async (req, res) => {
     likers: [],
     likesCount: 0,
     text: req.body.text,
-    image: req.body.image,
     timestamp: new Date().getTime()
   });
   try {
