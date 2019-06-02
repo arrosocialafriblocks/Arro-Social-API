@@ -34,6 +34,14 @@ const PostSchema = new Schema({
     trim: true,
     required: true
   },
+  image: {
+    type: String,
+    required: false
+  },
+  video: {
+    type: String,
+    required: false
+  },
   timestamp: {
     type: Number,
     required: true

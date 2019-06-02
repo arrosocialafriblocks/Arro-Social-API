@@ -48,5 +48,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => {
-  console.log(`Started up at port ${port}`);
+  console.log(`Arro-Social Started at port ${port}`);
 });
