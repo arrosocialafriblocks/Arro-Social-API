@@ -1,13 +1,36 @@
 const express = require('express');
 const { ObjectID } = require('mongodb');
+const multer = require('multer');
+const path = require('path');
 const Post = require('../models/postModel');
 
+
 const router = new express.Router();
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  let ext = path.extname(file.originalname);
+  if (ext !== '.pdf') {
+      return cb(new Error('Only PDF(s) are allowed'));
+  }
+
+  cb(null, true);
+};
 
 router.get('/', async (req, res) => {
   const posts = await Post.find().sort({ timestamp: -1 });
   res.status(200).json(posts);
 });
+
 
 router.post('/', async (req, res) => {
   const newPost = new Post({
