@@ -18,13 +18,22 @@ const storage = multer.diskStorage({
 
 const fileFilter = (req, file, cb) => {
   // reject a file
-  let ext = path.extname(file.originalname);
-  if (ext !== '.pdf') {
-      return cb(new Error('Only PDF(s) are allowed'));
+  const ext = path.extname(file.originalname);
+  if (ext !== '.jpg'|| ext !== '.png') {
+      return cb(new Error('you can only post images for now'));
   }
 
   cb(null, true);
 };
+
+// SET DOCUMENT SIZE
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter
+});
 
 router.get('/', async (req, res) => {
   const posts = await Post.find().sort({ timestamp: -1 });
@@ -32,7 +41,7 @@ router.get('/', async (req, res) => {
 });
 
 
-router.post('/', async (req, res) => {
+router.post('/', async, upload.single('image'), (req, res) => {
   const newPost = new Post({
     authorId: req.body.authorId,
     avatarColor: req.body.avatarColor || 0,
@@ -40,6 +49,7 @@ router.post('/', async (req, res) => {
     likers: [],
     likesCount: 0,
     text: req.body.text,
+    image: req.file.path,
     timestamp: new Date().getTime()
   });
   try {
