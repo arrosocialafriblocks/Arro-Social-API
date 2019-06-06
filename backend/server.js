@@ -8,7 +8,7 @@ const users = require('./routes/userRoute');
 const dbURI = process.env.REACT_APP_DB_URI || require('./secrets').dbURI;
 
 const app = express();
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 3000;
 
 // Enable CORS
 app.use((req, res, next) => {
