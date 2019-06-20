@@ -48,7 +48,7 @@ class Navbar extends Component {
               color="inherit"
             >
               <Link className={classes.logo} to="/">
-                Arro Social Web - MVP
+                Arro-Social
               </Link>
             </Typography>
             <div>

@@ -1,3 +1,6 @@
+// Authentication builds upon Krunal's guide:
+// https://appdividend.com/2018/07/18/react-redux-node-mongodb-jwt-authentication/#React_Redux_Node_MongoDB_JWT_Authentication
+
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import setAuthToken from '../setAuthToken';

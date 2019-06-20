@@ -7,6 +7,9 @@ const User = require('../models/userModel');
 
 const router = new express.Router();
 
+// Authentication builds on Maximilian Schwarzmüller's guide:
+// https://www.youtube.com/watch?v=0D5EEKH97NA
+
 // Get all users
 router.get('/', async (req, res) => {
   const users = await User.find();
@@ -161,7 +164,7 @@ router.patch('/:id', async (req, res) => {
       },
       process.env.REACT_APP_JWT_KEY || require('../secrets').jwtKey,
       {
-        expiresIn: '200h'
+        expiresIn: '24h'
       }
     );
 
