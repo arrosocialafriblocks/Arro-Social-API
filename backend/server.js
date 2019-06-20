@@ -5,12 +5,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const posts = require('./routes/postRoute');
 const users = require('./routes/userRoute');
-
 const dbURI = process.env.REACT_APP_DB_URI || require('./secrets').dbURI;
 
-
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Enable CORS
 app.use((req, res, next) => {
@@ -50,5 +48,5 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => {
-  console.log(`Arro-Social Started at port ${port}`);
+  console.log(`Started up at port ${port}`);
 });

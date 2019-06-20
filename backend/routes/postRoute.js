@@ -4,7 +4,6 @@ const multer = require('multer');
 const path = require('path');
 const Post = require('../models/postModel');
 
-
 const router = new express.Router();
 
 const storage = multer.diskStorage({
@@ -40,8 +39,7 @@ router.get('/', async (req, res) => {
   res.status(200).json(posts);
 });
 
-
-router.post('/', async, upload.single('image'), (req, res) => {
+router.post('/', async, upload.single('image'),(req, res) => {
   const newPost = new Post({
     authorId: req.body.authorId,
     avatarColor: req.body.avatarColor || 0,
